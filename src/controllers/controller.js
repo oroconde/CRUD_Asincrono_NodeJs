@@ -1,12 +1,12 @@
-const { GetAll, Getone, Create, Delete } = require("../models/model");
-
+const {Getall} = require("../models/model")
 
 const getall = async (req, res) => {
     try {
-      const result = await GetAll;
-      await res.json([result]);
+      const result = await Getall();
+      res.json(result);
     } catch (error) {
       res.status(500)
+      res.json({error: JSON.stringify(error)})
     }
 }
 module.exports =  { getall }
