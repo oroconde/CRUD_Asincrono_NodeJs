@@ -1,6 +1,6 @@
-### CRUD ASINCRONO
+## CRUD ASINCRONO
 
-Guia basica de un CRUD Asincrono
+Guia basica de un CRUD Asincrono.
 Este programa hace parte del entrenamiento Backend Developer
 
 ### TECNOLOGIA:
