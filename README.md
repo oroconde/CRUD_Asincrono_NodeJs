@@ -1,6 +1,6 @@
 ## ESTE CRUD CONTIENE MOUDLO SINCRONO y ASINCRONO
 
-CRUD sync 
+Guia basica de un CRUD Asincrono
 Este programa hace parte del entrenamiento Backend Developer
 
 ### TECNOLOGIA:
