@@ -13,19 +13,19 @@ const Getall = async () => {
 const Getone = async (id) => {
   try {
     const db = await Getall();
-    const found = db.find(id);
+    const found = db.find(item => item.id === id);
     return found;
   } catch (e) {
     throw e
 };
 }
-const Create = async (id) => {
+const Create = async (user) => {
   try {
     const db = await Getall();
-    const found = Getall().filter((item) => item.id =! id);
-    if (found =! db) {
-      found.push(id);
-      fs.writeFile(pathDB, JSON.stringify(Filter, null, 2), "utf-8");
+    const found = db.filter(item => item.id == user.id);
+    if (found.length == 0 ) {
+      db.push(user);
+      fs.writeFile(pathDB, JSON.stringify(db, null, 2), "utf-8");
       return true;
     }
   } catch (e) {
@@ -34,10 +34,10 @@ const Create = async (id) => {
 };
 const Delete = async (id) => {
   try {
-    const found = Getall().filter((item) => item.id != id);
-    const db = Getall;
-    if (found.length != db.length) {
-      await fs.writeFile(pathDB, JSON.stringify(found, null, 2), "utf8");
+    const db = await Getall();
+    const newarray = db.filter(item => item.id != id);
+    if (newarray.length != db.length) {
+      fs.writeFile(pathDB, JSON.stringify(newarray, null, 2), "utf8");
       return true;
     }
   } catch (e) {
@@ -46,11 +46,11 @@ const Delete = async (id) => {
 };
 const Update = async (id, edit) => {
   try {
-    const found = Getall().filter((item) => item.id != id);
-    const db = Getall;
-    if (filtrado.length != db.length) {
-      found.push(edit);
-      fs.writeFile(pathDB, JSON.stringify(found, null, 2), "utf8");
+    const db = await Getall();
+    const newarray =db.filter(item => item.id != id);
+    if (newarray.length != db.length) {
+      newarray.push(edit);
+      fs.writeFile(pathDB, JSON.stringify(newarray, null, 2), "utf8");
       return true;
     }
   } catch (e) {

@@ -11,11 +11,14 @@ const getall = async (req, res) => {
 };
 const getone = async (req, res) => {
   try {
-    const data = req.body;
+    const data = req.params.id;
     const result = await Getone(data);
-    res.status(200).json(result);
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.status(400).json({ msg: "usuario no registrado" });
+    }
   } catch (e) {
-    res.status(400).json({ msg: "usuario no registrado" });
     throw e;
   }
 };
@@ -26,7 +29,7 @@ const create = async (req, res) => {
     if (result) {
       res.status(200).json({ msg: "usuario creado" });
     } else {
-      res.status(400).json({ msg: "El usuario se encuentra registrado" });
+      res.status(400).json({ msg: "Este usuario ya se encuentra registrado" });
     }
   } catch (e) {
     throw e;
@@ -39,7 +42,7 @@ const deleted = async (req, res) => {
     if (result) {
       res.status(200).json({ msg: "usuario eliminado" });
     } else {
-      res.status(400).json({ msg: "No se usuario registrado con este id" });
+      res.status(400).json({ msg: "No existe este usuario" });
     }
   } catch (e) {
     throw e;
